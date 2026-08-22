@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Da Nang Cuisine — LocalTrip</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+
+    <header class="food-navbar">
+
+        <div class="food-nav-inner">
+
+            <a href="/" class="food-logo">
+                LocalTrip
+            </a>
+
+            <nav class="food-nav-links">
+                <a href="/">Home</a>
+                <a href="/places">Places</a>
+                <a href="/foods" class="active">Foods</a>
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- HERO -->
+
+    <section class="food-hero">
+
+        <div class="food-hero-content">
+
+            <p class="food-eyebrow">
+                LOCALTRIP / 02 · FOOD
+            </p>
+
+            <h1>
+                Taste<br>
+                <em>Da Nang.</em>
+            </h1>
+
+            <p>
+                Familiar dishes that capture the local flavors of Da Nang.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- INTRO -->
+
+    <section class="food-intro">
+
+        <div class="food-intro-label">
+            LOCAL FOOD
+        </div>
+
+        <div class="food-intro-content">
+
+            <p>
+                Not just food.
+            </p>
+
+            <h2>
+                Discover the flavors
+                that make <em>Da Nang.</em>
+            </h2>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOODS -->
+
+    <main class="foods-page">
+
+        <div class="foods-heading">
+
+            <div>
+                <p class="food-section-label">
+                    23 LOCAL FOODS
+                </p>
+
+                <h2>
+                    Local Specialties & Dishes
+                </h2>
+            </div>
+
+            <p class="foods-count">
+                {{ foods|length }} Dishes
+            </p>
+
+        </div>
+
+
+        {% if foods %}
+
+            <section class="foods-grid">
+
+                {% for food in foods %}
+                <article class="food-card">
+
+                    <div class="food-card-image">
+                        {% if food.image_url %}
+                            <img
+                                src="{{ url_for('static', filename='images/foods/' + food.image_url) }}"
+                                alt="{{ food.name }}"
+                            >
+                        {% else %}
+                            <span>Chưa có hình ảnh</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="food-card-content">
+                        <h3>
+                            {{ food.name }}
+                        </h3>
+
+                        <p>
+                            {{ food.description or "Chưa có mô tả." }}
+                        </p>
+                    </div>
+
+                </article>
+                {% endfor %}
+
+        </section>
+
+        {% else %}
+
+        <div class="foods-empty">
+            No dishes in the database yet.
+        </div>
+
+        {% endif %}
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="food-footer">
+
+        <div class="food-footer-logo">
+            LocalTrip
+        </div>
+
+        <p>
+            Discover Da Nang locally.
+        </p>
+
+    </footer>
+
+</body>
+</html>

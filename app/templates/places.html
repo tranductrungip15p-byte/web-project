@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Da Nang Destinations - LocalTrip</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f7f5;
+            color: #111;
+        }
+
+        header {
+            height: 92px;
+            background: #fff;
+            border-bottom: 1px solid #e5e5e5;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-inner {
+            width: 100%;
+            max-width: 1500px;
+            margin: auto;
+            padding: 0 38px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 21px;
+            font-weight: 600;
+            color: #111;
+            text-decoration: none;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 42px;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #555;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding-bottom: 8px;
+        }
+
+        .nav a:hover {
+            color: #111;
+        }
+
+        .nav .active {
+            color: #111;
+            border-bottom: 1px solid #111;
+        }
+
+        .hero {
+            min-height: 500px;
+            max-width: 1500px;
+            margin: 0 auto;
+
+            display: flex;
+            align-items: center;
+
+            padding: 70px 38px;
+            background: #f1f1ee;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .eyebrow {
+            margin-bottom: 28px;
+
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #555;
+        }
+
+        .hero h1 {
+            margin: 0;
+
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(72px, 9vw, 145px);
+            font-weight: 400;
+            line-height: 0.9;
+            letter-spacing: -5px;
+        }
+
+        .hero p {
+            margin: 38px 0 0;
+
+            max-width: 650px;
+            font-size: 17px;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        .container {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 75px 38px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+
+            margin-bottom: 35px;
+        }
+
+        .section-header h2 {
+            margin: 0;
+
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 42px;
+            font-weight: 400;
+        }
+
+        .section-header p {
+            margin: 0;
+            color: #777;
+            font-size: 14px;
+        }
+
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .place-card {
+            background: #fff;
+            overflow: hidden;
+            border: 1px solid #e5e5e5;
+
+            transition: transform 0.25s ease,
+                        box-shadow 0.25s ease;
+        }
+
+        .place-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.07);
+        }
+
+        .place-image {
+            width: 100%;
+            height: 310px;
+            background: #e5e5e2;
+            overflow: hidden;
+        }
+
+        .place-image img {
+            width: 100%;
+            height: 100%;
+            display: block;
+
+            object-fit: cover;
+        }
+
+        .place-content {
+            padding: 24px 25px 28px;
+        }
+
+        .place-content h3 {
+            margin: 0 0 12px;
+
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 27px;
+            font-weight: 400;
+            /* Fix text spacing */
+            letter-spacing: normal;
+            word-spacing: normal;
+            word-break: normal;
+            overflow-wrap: normal
+        }
+
+        .place-content h3 a {
+            text-decoration: none;
+            color: #111;
+            letter-spacing: normal;
+            word-spacing: normal;
+            white-space: normal;
+        }
+
+        .description {
+            min-height: 52px;
+
+            color: #666;
+            font-size: 15px;
+            line-height: 1.65;
+            margin-bottom: 17px;
+        }
+
+        .address {
+            color: #555;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .empty {
+            padding: 60px;
+            text-align: center;
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            color: #777;
+        }
+
+        .place-card-link {
+            display: block;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .place-card-link:hover {
+            color: inherit;
+        }
+
+        footer {
+            margin-top: 30px;
+            padding: 35px 20px;
+
+            background: #111;
+            color: #aaa;
+
+            text-align: center;
+            font-size: 13px;
+        }
+
+        @media (max-width: 900px) {
+            .places-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero h1 {
+                font-size: 80px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                height: auto;
+                padding: 20px 0;
+            }
+
+            .header-inner {
+                padding: 0 20px;
+            }
+
+            .nav {
+                gap: 16px;
+            }
+
+            .nav a {
+                font-size: 11px;
+            }
+
+            .hero {
+                min-height: 420px;
+                padding: 55px 20px;
+            }
+
+            .hero h1 {
+                font-size: 62px;
+                letter-spacing: -3px;
+            }
+
+            .container {
+                padding: 50px 20px;
+            }
+
+            .section-header {
+                display: block;
+            }
+
+            .section-header h2 {
+                margin-bottom: 10px;
+                font-size: 34px;
+            }
+
+            .places-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .place-image {
+                height: 270px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-inner">
+
+        <a href="/" class="logo">
+            LocalTrip
+        </a>
+
+        <nav class="nav">
+            <a href="/" >Home</a>
+            <a href="{{ url_for('places') }}" class="active">Places</a>
+            <a href="{{ url_for('foods') }}">Foods</a>
+        </nav>
+
+    </div>
+</header>
+
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="eyebrow">
+            LocalTrip / 01 · Places
+        </div>
+
+        <h1>
+            Explore<br>
+            Da Nang.
+        </h1>
+
+        <p>
+            Must-visit places, from nature and beaches to the familiar corners of the city.
+        </p>
+
+    </div>
+
+</section>
+
+
+<main class="container">
+
+    <div class="section-header">
+
+        <div>
+            <h2>Places to explore.</h2>
+        </div>
+
+        <p>
+            {{ places|length }} LocalTrip Destinations
+        </p>
+
+    </div>
+
+
+    {% if places %}
+
+    <section class="places-grid">
+
+        {% for place in places %}
+
+<article class="place-card">
+
+    <a
+        href="{{ url_for('place_detail', place_id=place.id) }}"
+        class="place-card-link"
+    >
+
+        <div class="place-image">
+
+            {% if place.image_url %}
+
+                <img
+                    src="{{ url_for('static', filename='images/places/' + place.image_url) }}"
+                    alt="{{ place.name }}"
+                >
+
+            {% else %}
+
+                <span>Chưa có hình ảnh</span>
+
+            {% endif %}
+
+        </div>
+
+        <div class="place-content">
+
+            <h3>
+                {{ place.name }}
+            </h3>
+
+            <div class="description">
+                {{ place.description or "Chưa có mô tả." }}
+            </div>
+
+            {% if place.address %}
+
+            <div class="address">
+                📍 {{ place.address }}
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </a>
+
+</article>
+
+{% endfor %}
+    </section>
+
+    {% else %}
+
+    <div class="empty">
+        No destinations in the database yet.
+    </div>
+
+    {% endif %}
+
+</main>
+
+
+<footer>
+    LocalTrip — Explore Da Nang like a local.
+</footer>
+
+</body>
+</html>

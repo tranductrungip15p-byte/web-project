@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>LocalTrip — Discover Da Nang</title>
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/animations.css') }}">
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/responsive.css') }}">
+</head>
+
+<body>
+
+    <!-- ============================= -->
+    <!-- NAVIGATION -->
+    <!-- ============================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            LocalTrip
+        </div>
+
+        <nav class="nav-links">
+            <a href="/">Home</a>
+            <a href="{{ url_for('places') }}">Places</a>
+            <a href="{{ url_for('foods') }}">Food</a>
+            <a href="#about">About</a>
+        </nav>
+
+    </header>
+
+
+    <!-- ============================= -->
+    <!-- HERO -->
+    <!-- ============================= -->
+
+    <main>
+
+        <section class="hero" id="discover">
+
+            <div class="hero-image"></div>
+
+            <div class="hero-overlay"></div>
+
+            <div class="hero-content">
+
+                <p class="eyebrow">
+                    VIETNAM · CENTRAL REGION
+                </p>
+
+                <h1>
+                    Explore<br>
+                    Da Nang.
+                </h1>
+
+                <p class="hero-description">
+                    A local journey through the nature, culture, 
+                    and everyday life of Da Nang.
+                </p>
+
+                <a href="#places" class="scroll-link">
+                    Explore Places
+                    <span>↓</span>
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- ============================= -->
+        <!-- INTRO -->
+        <!-- ============================= -->
+
+        <section class="intro">
+
+            <div class="intro-label">
+                LOCALTRIP / 01
+            </div>
+
+            <div class="intro-content">
+                <p>
+                    Not just places to visit.
+                </p>
+
+                <h2>
+                    Discover the places
+                    that make
+                    <em>Da Nang.</em>
+                </h2>
+            </div>
+
+        </section>
+
+
+        <!-- ============================= -->
+        <!-- PLACES -->
+        <!-- ============================= -->
+
+        <section class="places" id="places">
+
+
+            <!-- NGU HANH SON -->
+
+            <article class="place place-large">
+
+                <div class="place-image">
+                    <img
+                        src="{{ url_for('static', filename='images/places/place-01-ngu-hanh-son.jpg') }}"
+                        alt="Ngũ Hành Sơn">
+                </div>
+
+                <div class="place-info">
+
+                    <span class="place-number">
+                        01
+                    </span>
+
+                    <p class="place-category">
+                        NATURE · HISTORY
+                    </p>
+
+                    <h2>
+                        Ngu Hanh Son
+                    </h2>
+
+                    <p class="place-description">
+                        Mountains, caves and ancient
+                        temples rising above the city.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- SON TRA -->
+
+            <article class="place place-reverse">
+
+                <div class="place-info">
+
+                    <span class="place-number">
+                        02
+                    </span>
+
+                    <p class="place-category">
+                        NATURE
+                    </p>
+
+                    <h2>
+                        Son Tra
+                    </h2>
+
+                    <p class="place-description">
+                        A quiet green peninsula where
+                        the mountains meet the sea.
+                    </p>
+
+                </div>
+
+                <div class="place-image">
+                    <img
+                        src="{{ url_for('static', filename='images/places/place-03-son-tra.jpg') }}"
+                        alt="Sơn Trà">
+                </div>
+
+            </article>
+
+
+            <!-- LINH UNG -->
+
+            <article class="place place-large">
+
+                <div class="place-image">
+                    <img
+                        src="{{ url_for('static', filename='images/places/place-04-linh-ung.jpg') }}"
+                        alt="Chùa Linh Ứng">
+                </div>
+
+                <div class="place-info">
+
+                    <span class="place-number">
+                        03
+                    </span>
+
+                    <p class="place-category">
+                        SPIRITUAL
+                    </p>
+
+                    <h2>
+                        Linh Ung
+                    </h2>
+
+                    <p class="place-description">
+                        A peaceful view over the sea,
+                        mountains and the city.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- BA NA -->
+
+            <article class="place place-full">
+
+                <div class="place-image">
+                    <img
+                        src="{{ url_for('static', filename='images/places/place-02-ba-na-hills.jpg') }}"
+                        alt="Bà Nà Hills">
+                </div>
+
+                <div class="place-overlay">
+
+                    <span class="place-number">
+                        04
+                    </span>
+
+                    <p class="place-category">
+                        CHECK-IN
+                    </p>
+
+                    <h2>
+                        Ba Na Hills
+                    </h2>
+
+                </div>
+
+            </article>
+
+
+            <!-- DRAGON BRIDGE -->
+
+            <article class="place place-full place-night">
+
+                <div class="place-image">
+                    <img
+                        src="{{ url_for('static', filename='images/places/place-10-dragon-bridge.jpg') }}"
+                        alt="Cầu Rồng Đà Nẵng">
+                </div>
+
+                <div class="place-overlay">
+
+                    <span class="place-number">
+                        05
+                    </span>
+
+                    <p class="place-category">
+                        CITY · NIGHT
+                    </p>
+
+                    <h2>
+                        Dragon Bridge
+                    </h2>
+
+                </div>
+
+            </article>
+
+
+        </section>
+
+
+        <!-- ============================= -->
+        <!-- ABOUT -->
+        <!-- ============================= -->
+
+        <section class="about" id="about">
+
+            <p class="eyebrow">
+                ABOUT LOCALTRIP
+            </p>
+
+            <h2>
+                See Da Nang
+                differently.
+            </h2>
+
+            <p class="about-text">
+                LocalTrip is a simple way to discover
+                places, stories and experiences around
+                Da Nang.
+            </p>
+
+        </section>
+
+
+        <!-- ============================= -->
+        <!-- FOOTER -->
+        <!-- ============================= -->
+
+        <footer>
+
+            <div class="logo">
+                LocalTrip
+            </div>
+
+            <p>
+                Discover Da Nang locally.
+            </p>
+
+        </footer>
+
+    </main>
+
+
+    <!-- ============================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ============================= -->
+
+    <script>
+
+        /*
+         * Simple reveal animation
+         * when elements enter the viewport.
+         */
+
+        const revealElements =
+            document.querySelectorAll(
+                ".place, .intro-content, .about"
+            );
+
+        const observer =
+            new IntersectionObserver(
+                (entries) => {
+
+                    entries.forEach(entry => {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.classList.add(
+                                "is-visible"
+                            );
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.15
+                }
+            );
+
+        revealElements.forEach(element => {
+
+            observer.observe(element);
+
+        });
+
+    </script>
+
+</body>
+
+</html>

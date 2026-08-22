@@ -1,0 +1,29 @@
+/* ========================================
+   LocalTrip Responsive
+   ======================================== */
+
+@media (max-width: 1024px) {
+
+    :root {
+        --side-padding: 32px;
+    }
+
+}
+
+
+@media (max-width: 768px) {
+
+    :root {
+        --side-padding: 20px;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    :root {
+        --side-padding: 16px;
+    }
+
+}

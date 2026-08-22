@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>{{ food.name }} - LocalTrip</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fa;
+            color: #222;
+        }
+
+        .header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 18px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header h1 {
+            margin: 0 0 6px;
+            font-size: 24px;
+        }
+
+        .header p {
+            margin: 0;
+            color: #666;
+        }
+
+        .back-section {
+            margin-top: 35px;
+            margin-bottom: 20px;
+        }
+
+        .back-link {
+            color: #2563eb;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* =========================
+           FOOD DETAIL
+        ========================= */
+
+        .food-detail {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            min-height: 500px;
+
+            margin-bottom: 50px;
+        }
+
+        /* =========================
+           IMAGE
+        ========================= */
+
+        .food-detail-image {
+            background: #f1f3f5;
+
+            min-height: 500px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 25px;
+        }
+
+        .food-detail-image img {
+            width: 100%;
+            height: 100%;
+
+            max-height: 450px;
+
+            object-fit: contain;
+
+            display: block;
+        }
+
+        .no-image {
+            color: #777;
+            font-size: 15px;
+        }
+
+        /* =========================
+           CONTENT
+        ========================= */
+
+        .food-detail-content {
+            padding: 55px 45px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .food-detail-content h2 {
+            margin: 0 0 20px;
+
+            font-size: 36px;
+            line-height: 1.2;
+
+            color: #222;
+        }
+
+        .food-detail-content p {
+            margin: 0;
+
+            color: #666;
+
+            line-height: 1.8;
+
+            font-size: 17px;
+
+            max-width: 480px;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .food-detail {
+                grid-template-columns: 1fr;
+            }
+
+            .food-detail-image {
+                min-height: 320px;
+            }
+
+            .food-detail-image img {
+                max-height: 300px;
+            }
+
+            .food-detail-content {
+                padding: 30px 25px;
+            }
+
+            .food-detail-content h2 {
+                font-size: 29px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="container">
+
+            <h1>
+
+                <a
+                    href="/"
+                    style="text-decoration: none; color: #222;"
+                >
+                    LocalTrip
+                </a>
+
+            </h1>
+
+            <p>
+                Khám phá địa điểm và ẩm thực Đà Nẵng
+            </p>
+
+        </div>
+
+    </header>
+
+
+    <main class="container">
+
+        <!-- BACK -->
+
+        <section class="back-section">
+
+            <a
+                href="{{ url_for('foods') }}"
+                class="back-link"
+            >
+                ← Quay lại ẩm thực
+            </a>
+
+        </section>
+
+
+        <!-- FOOD DETAIL -->
+
+        <section class="food-detail">
+
+
+            <!-- IMAGE -->
+
+            <div class="food-detail-image">
+
+                {% if food.image_url %}
+
+                    <img
+                        src="{{ url_for('static', filename='images/foods/' + food.image_url) }}"
+                        alt="{{ food.name }}"
+                    >
+
+                {% else %}
+
+                    <div class="no-image">
+                        Chưa có hình ảnh
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- CONTENT -->
+
+            <div class="food-detail-content">
+
+                <h2>
+                    {{ food.name }}
+                </h2>
+
+                <p>
+                    {{ food.description or "Chưa có mô tả." }}
+                </p>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

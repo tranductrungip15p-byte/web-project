@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ place.name }} - LocalTrip</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            background: #f7f7f5;
+            color: #111;
+        }
+
+        header {
+            height: 92px;
+
+            background: #fff;
+
+            border-bottom: 1px solid #e5e5e5;
+
+            display: flex;
+            align-items: center;
+        }
+
+        .header-inner {
+            width: 100%;
+            max-width: 1500px;
+
+            margin: auto;
+            padding: 0 38px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            text-decoration: none;
+
+            font-size: 21px;
+            font-weight: 600;
+
+            color: #111;
+        }
+
+        .nav {
+            display: flex;
+            gap: 42px;
+        }
+
+        .nav a {
+            text-decoration: none;
+
+            color: #555;
+
+            font-size: 13px;
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+
+            padding-bottom: 8px;
+        }
+
+        .nav a:hover {
+            color: #111;
+        }
+
+        .nav .active {
+            color: #111;
+            border-bottom: 1px solid #111;
+        }
+
+        .container {
+            max-width: 1500px;
+
+            margin: 0 auto;
+
+            padding: 65px 38px 80px;
+        }
+
+        .back-link {
+            display: inline-block;
+
+            margin-bottom: 40px;
+
+            color: #555;
+
+            text-decoration: none;
+
+            font-size: 13px;
+            letter-spacing: 0.5px;
+        }
+
+        .back-link:hover {
+            color: #111;
+        }
+
+        .detail-layout {
+            display: grid;
+
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+
+            gap: 65px;
+
+            align-items: start;
+        }
+
+        .detail-image {
+            width: 100%;
+
+            height: 600px;
+
+            background: #e8e8e5;
+
+            overflow: hidden;
+        }
+
+        .detail-image img {
+            width: 100%;
+            height: 100%;
+
+            display: block;
+
+            /*
+             * Giữ trọn ảnh, không cắt mất nội dung.
+             */
+            object-fit: contain;
+
+            background: #e8e8e5;
+        }
+
+        .detail-content {
+            padding-top: 15px;
+        }
+
+        .eyebrow {
+            margin-bottom: 25px;
+
+            font-size: 12px;
+            letter-spacing: 3px;
+
+            text-transform: uppercase;
+
+            color: #777;
+        }
+
+        .detail-content h1 {
+            margin: 0 0 25px;
+
+            font-family: Georgia, "Times New Roman", serif;
+
+            font-size: clamp(48px, 5vw, 78px);
+
+            font-weight: 400;
+
+            line-height: 0.98;
+
+            letter-spacing: -2px;
+        }
+
+        .description {
+            color: #555;
+
+            font-size: 17px;
+
+            line-height: 1.8;
+
+            margin-bottom: 30px;
+        }
+
+        .address {
+            padding-top: 22px;
+
+            border-top: 1px solid #ddd;
+
+            color: #555;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+        }
+
+        .local-tips {
+            margin-top: 70px;
+
+            padding-top: 45px;
+
+            border-top: 1px solid #ddd;
+        }
+
+        .local-tips h2 {
+            margin: 0 0 30px;
+
+            font-family: Georgia, "Times New Roman", serif;
+
+            font-size: 38px;
+
+            font-weight: 400;
+        }
+
+        .tips-list {
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 0 50px;
+        }
+
+        .tip-item {
+            padding: 22px 0;
+
+            border-bottom: 1px solid #ddd;
+        }
+
+        .tip-item h3 {
+            margin: 0 0 10px;
+
+            font-size: 16px;
+
+            font-weight: 600;
+        }
+
+        .tip-item p {
+            margin: 0;
+
+            color: #666;
+
+            font-size: 15px;
+
+            line-height: 1.7;
+        }
+
+        .no-tips {
+            color: #777;
+
+            line-height: 1.6;
+        }
+
+        footer {
+            padding: 35px 20px;
+
+            background: #111;
+
+            color: #aaa;
+
+            text-align: center;
+
+            font-size: 13px;
+        }
+
+        @media (max-width: 900px) {
+
+            .detail-layout {
+                grid-template-columns: 1fr;
+
+                gap: 40px;
+            }
+
+            .detail-image {
+                height: 500px;
+            }
+
+            .tips-list {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            header {
+                height: auto;
+                padding: 20px 0;
+            }
+
+            .header-inner {
+                padding: 0 20px;
+            }
+
+            .nav {
+                gap: 16px;
+            }
+
+            .nav a {
+                font-size: 11px;
+            }
+
+            .container {
+                padding: 45px 20px 60px;
+            }
+
+            .detail-image {
+                height: 380px;
+            }
+
+            .detail-content h1 {
+                font-size: 48px;
+            }
+
+            .local-tips {
+                margin-top: 50px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<header>
+
+    <div class="header-inner">
+
+        <a href="/" class="logo">
+            LocalTrip
+        </a>
+
+        <nav class="nav">
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="{{ url_for('places') }}" class="active">
+                Places
+            </a>
+
+            <a href="{{ url_for('foods') }}">
+                Foods
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<main class="container">
+
+    <a
+        href="{{ url_for('places') }}"
+        class="back-link"
+    >
+        ← Quay lại địa điểm
+    </a>
+
+
+    <section class="detail-layout">
+
+
+        <!-- IMAGE -->
+
+        <div class="detail-image">
+
+            {% if place.image_url %}
+
+                <img
+                    src="{{ url_for('static', filename='images/places/' + place.image_url) }}"
+                    alt="{{ place.name }}"
+                >
+
+            {% else %}
+
+                <span>Chưa có hình ảnh</span>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- CONTENT -->
+
+        <div class="detail-content">
+
+            <div class="eyebrow">
+                LocalTrip / 01 · Places
+            </div>
+
+            <h1>
+                {{ place.name }}
+            </h1>
+
+            <div class="description">
+
+                {{ place.description or "Chưa có mô tả." }}
+
+            </div>
+
+
+            {% if place.address %}
+
+            <div class="address">
+
+                📍 {{ place.address }}
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </section>
+
+
+    <!-- LOCAL TIPS -->
+
+    <section class="local-tips">
+
+        <h2>
+            Local Tips.
+        </h2>
+
+
+        {% if tips %}
+
+        <div class="tips-list">
+
+            {% for tip in tips %}
+
+            <div class="tip-item">
+
+                {% if tip.tip_type == "what_to_bring" %}
+
+                    <h3>🎒 Mang theo</h3>
+
+                {% elif tip.tip_type == "best_time" %}
+
+                    <h3>🕐 Thời điểm phù hợp</h3>
+
+                {% elif tip.tip_type == "safety" %}
+
+                    <h3>⚠️ Lưu ý an toàn</h3>
+
+                {% elif tip.tip_type == "transport" %}
+
+                    <h3>🚌 Di chuyển</h3>
+
+                {% elif tip.tip_type == "dress_code" %}
+
+                    <h3>👕 Trang phục</h3>
+
+                {% else %}
+
+                    <h3>💡 Gợi ý</h3>
+
+                {% endif %}
+
+                <p>
+                    {{ tip.content }}
+                </p>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <p class="no-tips">
+            Chưa có Local Tips cho địa điểm này.
+        </p>
+
+        {% endif %}
+
+    </section>
+
+</main>
+
+
+<footer>
+    LocalTrip — Khám phá Đà Nẵng theo cách của người địa phương.
+</footer>
+
+
+</body>
+</html>

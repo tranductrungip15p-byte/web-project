@@ -1,0 +1,1252 @@
+/* ========================================
+   LocalTrip - Design Foundation
+======================================== */
+
+:root {
+    /* Colors */
+    --color-white: #ffffff;
+    --color-black: #111111;
+    --color-gray: #666666;
+    --color-light: #f5f5f2;
+
+    /* Typography */
+    --font-main: "Inter", sans-serif;
+    --font-display: "Playfair Display", serif;
+    --font-script: "Caveat", cursive;
+
+    /* Layout */
+    --container-width: 1400px;
+    --side-padding: 48px;
+
+    /* Spacing */
+    --space-xs: 8px;
+    --space-sm: 16px;
+    --space-md: 32px;
+    --space-lg: 64px;
+    --space-xl: 96px;
+    --space-xxl: 128px;
+
+    /* Animation */
+    --transition-fast: 0.3s ease;
+    --transition-normal: 0.7s ease;
+    --transition-slow: 1s ease;
+}
+
+
+/* ========================================
+   RESET
+======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--color-black);
+    background: var(--color-white);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+img {
+    display: block;
+    width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* ========================================
+   CONTAINER
+======================================== */
+
+.container {
+    width: min(
+        calc(100% - (var(--side-padding) * 2)),
+        var(--container-width)
+    );
+
+    margin: 0 auto;
+}
+
+
+/* ========================================
+   NAVIGATION
+======================================== */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    padding: 28px var(--side-padding);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    z-index: 100;
+
+    color: var(--color-white);
+
+    mix-blend-mode: difference;
+}
+
+.logo {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+}
+
+.nav-links {
+    display: flex;
+    gap: 36px;
+}
+
+.nav-links a {
+    position: relative;
+
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.nav-links a::after {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+
+    width: 0;
+    height: 1px;
+
+    background: currentColor;
+
+    transition: width var(--transition-fast);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+
+/* ========================================
+   HERO
+======================================== */
+
+.hero {
+    position: relative;
+
+    width: 100%;
+    min-height: 100svh;
+
+    overflow: hidden;
+
+    color: var(--color-white);
+}
+
+.hero-image {
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        url("../images/hero/hero.jpg");
+
+    background-size: cover;
+    background-position: center;
+
+    transform: scale(1.04);
+
+    animation: heroZoom 12s ease-out forwards;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.25) 0%,
+            rgba(0, 0, 0, 0.05) 45%,
+            rgba(0, 0, 0, 0.45) 100%
+        );
+}
+
+.hero-content {
+    position: absolute;
+
+    left: var(--side-padding);
+    bottom: 12%;
+
+    max-width: 900px;
+
+    z-index: 2;
+}
+
+.eyebrow {
+    margin-bottom: 18px;
+
+    font-size: 12px;
+    font-weight: 500;
+
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    font-family: var(--font-display);
+
+    font-size: clamp(72px, 10vw, 150px);
+
+    font-weight: 400;
+    line-height: 0.88;
+
+    letter-spacing: -0.055em;
+}
+
+.hero-description {
+    max-width: 520px;
+
+    margin-top: 32px;
+
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.scroll-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+
+    margin-top: 44px;
+
+    padding-bottom: 7px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    transition:
+        gap var(--transition-fast),
+        opacity var(--transition-fast);
+}
+
+.scroll-link:hover {
+    gap: 22px;
+    opacity: 0.7;
+}
+
+
+/* ========================================
+   INTRO
+======================================== */
+
+.intro {
+    display: grid;
+
+    grid-template-columns: 25% 75%;
+
+    padding:
+        var(--space-xxl)
+        var(--side-padding);
+
+    background: var(--color-white);
+}
+
+.intro-label {
+    font-size: 11px;
+
+    letter-spacing: 0.12em;
+
+    color: var(--color-gray);
+}
+
+.intro-content {
+    max-width: 850px;
+}
+
+.intro-content > p {
+    margin-bottom: 24px;
+
+    font-size: 14px;
+
+    color: var(--color-gray);
+}
+
+.intro h2 {
+    font-family: var(--font-display);
+
+    font-size: clamp(48px, 6vw, 88px);
+
+    font-weight: 400;
+
+    line-height: 1.02;
+
+    letter-spacing: -0.045em;
+}
+
+.intro h2 em {
+    font-family: var(--font-script);
+
+    font-size: 1.05em;
+
+    font-weight: 400;
+}
+
+
+/* ========================================
+   PLACES
+======================================== */
+
+.places {
+    width: 100%;
+}
+
+
+/* ========================================
+   PLACE BASE
+======================================== */
+
+.place {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns: 58% 42%;
+
+    min-height: 720px;
+
+    overflow: hidden;
+
+    background: var(--color-light);
+}
+
+.place-reverse {
+    grid-template-columns: 42% 58%;
+}
+
+.place-image {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    min-height: 720px;
+
+    overflow: hidden;
+}
+
+.place-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+        transform 1.2s cubic-bezier(.2,.65,.25,1);
+}
+
+.place:hover .place-image img {
+    transform: scale(1.045);
+}
+
+
+/* ========================================
+   PLACE INFO
+======================================== */
+
+.place-info {
+    align-self: center;
+
+    padding: 80px;
+
+    max-width: 600px;
+}
+
+.place-number {
+    display: block;
+
+    margin-bottom: 34px;
+
+    font-size: 11px;
+
+    letter-spacing: 0.12em;
+
+    color: var(--color-gray);
+}
+
+.place-category {
+    margin-bottom: 16px;
+
+    font-size: 11px;
+
+    letter-spacing: 0.14em;
+
+    color: var(--color-gray);
+}
+
+.place-info h2 {
+    font-family: var(--font-display);
+
+    font-size: clamp(48px, 5vw, 76px);
+
+    font-weight: 400;
+
+    line-height: 0.95;
+
+    letter-spacing: -0.045em;
+}
+
+.place-description {
+    max-width: 520px;
+
+    margin-top: 30px;
+
+    font-size: 15px;
+
+    color: var(--color-gray);
+}
+
+
+/* ========================================
+   FULL WIDTH PLACE
+======================================== */
+
+.place-full {
+    display: block;
+
+    min-height: 850px;
+
+    color: var(--color-white);
+}
+
+.place-full .place-image {
+    position: absolute;
+    inset: 0;
+
+    height: 100%;
+    min-height: 100%;
+}
+
+.place-full .place-image::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.05),
+            rgba(0, 0, 0, 0.5)
+        );
+}
+
+.place-overlay {
+    position: absolute;
+
+    left: var(--side-padding);
+    bottom: 90px;
+
+    z-index: 2;
+}
+
+.place-overlay .place-number {
+    color: rgba(255,255,255,0.75);
+
+    margin-bottom: 24px;
+}
+
+.place-overlay .place-category {
+    color: rgba(255,255,255,0.75);
+}
+
+.place-overlay h2 {
+    font-family: var(--font-display);
+
+    font-size: clamp(64px, 9vw, 130px);
+
+    font-weight: 400;
+
+    line-height: 0.9;
+
+    letter-spacing: -0.055em;
+}
+
+
+/* ========================================
+   NIGHT SECTION
+======================================== */
+
+.place-night {
+    min-height: 760px;
+
+    background: #111111;
+}
+
+.place-night .place-image::after {
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.05),
+            rgba(0, 0, 0, 0.65)
+        );
+}
+
+
+/* ========================================
+   ABOUT
+======================================== */
+
+.about {
+    min-height: 72vh;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    padding:
+        100px
+        var(--side-padding)
+        90px;
+
+    background: var(--color-light);
+
+    text-align: center;
+}
+
+.about h2 {
+    width: 100%;
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    font-family: var(--font-display);
+
+    font-size: clamp(54px, 7vw, 100px);
+
+    font-weight: 400;
+
+    line-height: 0.95;
+
+    letter-spacing: -0.05em;
+}
+
+.about-text {
+    max-width: 520px;
+
+    margin: 36px auto 0;
+
+    font-size: 16px;
+
+    line-height: 1.6;
+
+    color: var(--color-gray);
+}
+
+
+/* ========================================
+   FOOTER
+======================================== */
+
+footer {
+    min-height: 72px;
+
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    padding:
+        20px
+        var(--side-padding);
+
+    border-top: 1px solid #dddddd;
+
+    background: var(--color-light);
+}
+
+footer p {
+    font-size: 12px;
+
+    color: var(--color-gray);
+}
+
+
+/* ========================================
+   ANIMATIONS
+======================================== */
+
+@keyframes heroZoom {
+
+    from {
+        transform: scale(1.08);
+    }
+
+    to {
+        transform: scale(1);
+    }
+
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 900px) {
+
+    :root {
+        --side-padding: 24px;
+    }
+
+    .nav-links {
+        gap: 18px;
+    }
+
+    .hero-content {
+        left: var(--side-padding);
+        right: var(--side-padding);
+    }
+
+    .intro {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+
+    .place,
+    .place-reverse {
+        grid-template-columns: 1fr;
+
+        min-height: auto;
+    }
+
+    .place-image {
+        min-height: 500px;
+    }
+
+    .place-info {
+        padding: 64px var(--side-padding);
+    }
+
+    .place-full {
+        min-height: 650px;
+    }
+
+    .about {
+        min-height: 60vh;
+
+        padding:
+            90px
+            var(--side-padding)
+            80px;
+    }
+
+    .about h2 {
+        max-width: 760px;
+    }
+
+    footer {
+        padding:
+            20px
+            var(--side-padding);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    :root {
+        --side-padding: 20px;
+    }
+
+    .navbar {
+        padding: 22px var(--side-padding);
+    }
+
+    .nav-links a {
+        font-size: 10px;
+    }
+
+    .hero h1 {
+        font-size: clamp(64px, 18vw, 100px);
+    }
+
+    .hero-description {
+        font-size: 14px;
+    }
+
+    .intro {
+        padding:
+            var(--space-xl)
+            var(--side-padding);
+    }
+
+    .place-image {
+        min-height: 400px;
+    }
+
+    .place-info {
+        padding:
+            54px
+            var(--side-padding);
+    }
+
+    .place-full {
+        min-height: 550px;
+    }
+
+    .place-overlay {
+        left: var(--side-padding);
+        bottom: 55px;
+    }
+
+    .about {
+        min-height: auto;
+
+        padding:
+            80px
+            var(--side-padding)
+            64px;
+    }
+
+    .about h2 {
+        font-size: clamp(48px, 15vw, 76px);
+    }
+
+    .about-text {
+        max-width: 420px;
+
+        margin-top: 28px;
+
+        font-size: 14px;
+    }
+
+    footer {
+        min-height: 90px;
+
+        justify-content: center;
+        align-items: center;
+
+        flex-direction: column;
+
+        gap: 6px;
+
+        text-align: center;
+
+        padding:
+            20px
+            var(--side-padding);
+    }
+
+}
+/* ========================================
+   FOODS PAGE
+======================================== */
+
+.food-navbar {
+    position: relative;
+    width: 100%;
+    padding: 28px var(--side-padding);
+    background: var(--color-white);
+    border-bottom: 1px solid #e5e5e5;
+    z-index: 10;
+}
+
+.food-nav-inner {
+    width: min(
+        calc(100% - (var(--side-padding) * 2)),
+        var(--container-width)
+    );
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.food-logo {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+}
+
+.food-nav-links {
+    display: flex;
+    gap: 36px;
+}
+
+.food-nav-links a {
+    position: relative;
+
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    color: var(--color-gray);
+
+    transition: opacity var(--transition-fast);
+}
+
+.food-nav-links a:hover {
+    opacity: 0.55;
+}
+
+.food-nav-links a.active {
+    color: var(--color-black);
+}
+
+.food-nav-links a.active::after {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    bottom: -7px;
+
+    width: 100%;
+    height: 1px;
+
+    background: currentColor;
+}
+
+
+/* ========================================
+   FOOD HERO
+======================================== */
+
+.food-hero {
+    min-height: 560px;
+
+    display: flex;
+    align-items: flex-end;
+
+    padding:
+        80px
+        var(--side-padding)
+        90px;
+
+    background: var(--color-light);
+}
+
+.food-hero-content {
+    width: min(100%, var(--container-width));
+    margin: 0 auto;
+}
+
+.food-eyebrow {
+    margin-bottom: 22px;
+
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+
+    color: var(--color-gray);
+}
+
+.food-hero h1 {
+    font-family: var(--font-display);
+
+    font-size: clamp(72px, 10vw, 150px);
+    font-weight: 400;
+
+    line-height: 0.85;
+    letter-spacing: -0.055em;
+}
+
+.food-hero h1 em {
+    font-family: var(--font-script);
+    font-style: normal;
+}
+
+.food-hero-content > p:last-child {
+    max-width: 520px;
+
+    margin-top: 32px;
+
+    font-size: 16px;
+    color: var(--color-gray);
+}
+
+
+/* ========================================
+   FOOD INTRO
+======================================== */
+
+.food-intro {
+    display: grid;
+    grid-template-columns: 25% 75%;
+
+    padding:
+        var(--space-xxl)
+        var(--side-padding);
+
+    background: var(--color-white);
+}
+
+.food-intro-label {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--color-gray);
+}
+
+.food-intro-content {
+    max-width: 850px;
+}
+
+.food-intro-content > p {
+    margin-bottom: 24px;
+
+    font-size: 14px;
+    color: var(--color-gray);
+}
+
+.food-intro-content h2 {
+    font-family: var(--font-display);
+
+    font-size: clamp(48px, 6vw, 88px);
+    font-weight: 400;
+
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+}
+
+.food-intro-content h2 em {
+    font-family: var(--font-script);
+    font-size: 1.05em;
+    font-weight: 400;
+}
+
+
+/* ========================================
+   FOODS MAIN
+======================================== */
+
+.foods-page {
+    width: min(
+        calc(100% - (var(--side-padding) * 2)),
+        var(--container-width)
+    );
+
+    margin: 0 auto;
+
+    padding-bottom: var(--space-xxl);
+}
+
+.foods-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    margin-bottom: 48px;
+}
+
+.food-section-label {
+    margin-bottom: 12px;
+
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--color-gray);
+}
+
+.foods-heading h2 {
+    font-family: var(--font-display);
+
+    font-size: clamp(38px, 5vw, 64px);
+    font-weight: 400;
+
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+}
+
+.foods-count {
+    font-size: 12px;
+    color: var(--color-gray);
+}
+
+
+/* ========================================
+   FOOD GRID
+======================================== */
+
+.foods-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 48px 28px;
+}
+
+
+/* ========================================
+   FOOD CARD
+======================================== */
+
+.food-card {
+    min-width: 0;
+}
+
+.food-card-image {
+    position: relative;
+
+    display: block;
+
+    width: 100%;
+    height: 360px;
+
+    overflow: hidden;
+
+    background: var(--color-light);
+}
+
+.food-card-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+        transform 1s cubic-bezier(.2,.65,.25,1);
+}
+
+.food-card:hover .food-card-image img {
+    transform: scale(1.045);
+}
+
+.food-no-image {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--color-gray);
+    font-size: 13px;
+}
+
+
+/* ========================================
+   FOOD CARD CONTENT
+======================================== */
+
+.food-card-content {
+    position: relative;
+
+    padding-top: 22px;
+}
+
+.food-card-number {
+    margin-bottom: 12px;
+
+    font-size: 10px;
+    letter-spacing: 0.14em;
+
+    color: var(--color-gray);
+}
+
+.food-card-content h3 {
+    margin: 0;
+
+    font-family: var(--font-display);
+
+    font-size: 34px;
+    font-weight: 400;
+
+    line-height: 1;
+    letter-spacing: -0.035em;
+}
+
+.food-card-content p {
+    max-width: 420px;
+
+    margin-top: 18px;
+
+    font-size: 14px;
+    line-height: 1.65;
+
+    color: var(--color-gray);
+}
+
+.food-detail-link {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 12px;
+
+    margin-top: 20px;
+
+    padding-bottom: 5px;
+
+    border-bottom: 1px solid #222;
+
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    transition:
+        gap var(--transition-fast),
+        opacity var(--transition-fast);
+}
+
+.food-detail-link:hover {
+    gap: 18px;
+    opacity: 0.6;
+}
+
+
+/* ========================================
+   EMPTY
+======================================== */
+
+.foods-empty {
+    padding: 80px 20px;
+
+    text-align: center;
+
+    color: var(--color-gray);
+}
+
+
+/* ========================================
+   FOOD FOOTER
+======================================== */
+
+.food-footer {
+    min-height: 100px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding:
+        20px
+        var(--side-padding);
+
+    border-top: 1px solid #dddddd;
+
+    background: var(--color-light);
+}
+
+.food-footer-logo {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.food-footer p {
+    font-size: 12px;
+    color: var(--color-gray);
+}
+
+
+/* ========================================
+   FOODS RESPONSIVE
+======================================== */
+
+@media (max-width: 900px) {
+
+    .food-intro {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+
+    .foods-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 40px 24px;
+    }
+
+    .food-card-image {
+        height: 320px;
+    }
+
+    .food-card-content h3 {
+        font-size: 30px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .food-navbar {
+        padding: 22px var(--side-padding);
+    }
+
+    .food-nav-links {
+        gap: 16px;
+    }
+
+    .food-nav-links a {
+        font-size: 10px;
+    }
+
+    .food-hero {
+        min-height: 480px;
+
+        padding:
+            60px
+            var(--side-padding)
+            70px;
+    }
+
+    .food-hero h1 {
+        font-size: clamp(64px, 18vw, 100px);
+    }
+
+    .food-intro {
+        padding:
+            var(--space-xl)
+            var(--side-padding);
+    }
+
+    .foods-page {
+        width: calc(100% - (var(--side-padding) * 2));
+    }
+
+    .foods-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .foods-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+
+    .food-card-image {
+        height: 380px;
+    }
+
+    .food-card-content h3 {
+        font-size: 34px;
+    }
+
+    .food-footer {
+        justify-content: center;
+        flex-direction: column;
+        gap: 6px;
+
+        text-align: center;
+    }
+}
